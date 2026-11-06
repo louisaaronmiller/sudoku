@@ -1,4 +1,6 @@
 import grid
+import time
+start_time = time.time()
 
 easy = [
     [None, None, None, None,None,None, None, None, None],
@@ -15,6 +17,8 @@ easy = [
 
 grid_easy = grid.Grid(9, 9, grid.matrix2grid(easy))
 
-grid_easy.solve()
+grid_easy.solve2()
 
 print(grid_easy.visualMatrix())
+print()
+print("--- %s seconds ---" % (time.time() - start_time))
