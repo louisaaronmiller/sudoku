@@ -1,0 +1,56 @@
+body {
+    background-color: rgba(1, 4, 5, 0.85);
+}
+
+.homescreen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+
+/* no highlighting/selecting ascii art */ 
+.noselect_dragon {
+    user-select: none;
+    -webkit-user-select: none;
+} 
+
+.homescreen h1 {
+    font-size: 50px;
+    font-family: Arial;
+    color: Black;
+    text-align: center;
+    margin-top: 5px;
+}
+
+
+.diff_buttons{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.diff_buttons a{
+    margin-top: -20px;
+    padding: 10px 40px;
+    color: white;
+    text-decoration: none;
+    font-family: Arial;
+}
+
+.explain_button {
+    display: flex;
+    justify-content: center;
+}
+
+.explain_button a {
+    margin-top: 20px;
+    color: white;
+    text-decoration: none;
+    font-family: Arial;
+}
+
+.diff_buts {
+    background-color: black;
+}
