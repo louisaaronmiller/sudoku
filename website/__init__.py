@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-print(os.environ.get('SECRET_KEY') is not None)
+
 
 def create_app():
     app = Flask(__name__)
