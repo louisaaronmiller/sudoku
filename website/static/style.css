@@ -1,6 +1,16 @@
+:root {
+    --cell-width: 80px;
+    --cell-colour: rgb(206, 212, 187);
+}
+
+
+
 body {
     background-color: rgba(1, 4, 5, 0.85);
 }
+
+
+/* Homescreen webpage */ 
 
 .homescreen {
     position: fixed;
@@ -54,3 +64,54 @@ body {
 .diff_buts {
     background-color: black;
 }
+
+
+
+
+
+
+/* Explaination webpage */ 
+
+.animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+
+
+/* Sudoku webpage */
+
+.sudoku-layout {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    
+}
+
+
+
+
+.grid-container {
+    display: grid;
+    
+    grid-template-columns: repeat(9,var(--cell-width));
+    grid-template-rows: repeat(9,var(--cell-width));
+
+    gap: 0px;
+
+}
+
+.grid-item {
+    width: var(--cell-width);
+    height: var(--cell-width);
+    background-color: var(--cell-colour);
+    border: 2px solid black;
+
+    /* box-sizing: border-box;      maybe add? */
+}
+
+
+

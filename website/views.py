@@ -13,7 +13,7 @@ def home():
 @views.route('/sudoku/<difficulty>')
 def sudokupage(difficulty):
 
-    return render_template("sudokupage.html", difficulty=difficulty)
+    return render_template("sudoku.html", difficulty=difficulty)
 
 @views.route('/solver')
 def solverpage():
