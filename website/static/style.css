@@ -1,6 +1,6 @@
 :root {
     --cell-width: 80px;
-    --cell-colour: rgb(206, 212, 187);
+    --cell-colour: rgb(225, 230, 212);
 }
 
 
@@ -97,21 +97,42 @@ body {
 .grid-container {
     display: grid;
     
-    grid-template-columns: repeat(9,var(--cell-width));
-    grid-template-rows: repeat(9,var(--cell-width));
+    grid-template-columns: repeat(9,1fr);
+    grid-template-rows: repeat(9,1fr);
 
-    gap: 0px;
+
+    width: 60vw; /* vw = viewport, first number percentage of browser window */ 
+    max-width: calc(var(--cell-width) * 9);
+    min-width: 480px;
+    aspect-ratio: 1/1;
+    border: 4px solid black;
+
 
 }
 
 .grid-item {
-    width: var(--cell-width);
-    height: var(--cell-width);
+    box-sizing: border-box;
     background-color: var(--cell-colour);
-    border: 2px solid black;
+    border: 1px solid black;
 
-    /* box-sizing: border-box;      maybe add? */
 }
+
+
+/* every 3rd cell */
+.grid-item:nth-child(3n) {
+    border-right: 4px solid black;
+}
+
+
+/* starts at 19, ends at 27 */
+.grid-item:nth-child(n + 19):nth-child(-n + 27) {
+    border-bottom: 4px solid black;
+}
+
+.grid-item:nth-child(n + 46):nth-child(-n + 54) {
+    border-bottom: 4px solid black;
+}
+
 
 
 
