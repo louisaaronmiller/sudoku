@@ -1,12 +1,12 @@
 :root {
     --cell-width: 80px;
-    --cell-colour: rgb(225, 230, 212);
+    --cell-colour: rgb(247, 252, 236);
 }
 
 
 
 body {
-    background-color: rgba(1, 4, 5, 0.85);
+    background-color: #FFF5E3;
 }
 
 
@@ -49,15 +49,16 @@ body {
     font-family: Arial;
 }
 
-.explain_button {
+.explain_buttons {
     display: flex;
     justify-content: center;
+    gap: 20px;
 }
 
-.explain_button a {
+.explain_buttons a {
     margin-top: 20px;
-    color: white;
-    text-decoration: none;
+    color: black;
+    text-decoration: underline;
     font-family: Arial;
 }
 
@@ -118,8 +119,8 @@ body {
 }
 
 
-/* every 3rd cell */
-.grid-item:nth-child(3n) {
+/* every 3rd cell - except for the last*/
+.grid-item:nth-child(3n):not(:nth-child(9n)) {
     border-right: 4px solid black;
 }
 
