@@ -169,11 +169,14 @@ class Grid:
             return True
         
         cell = self.elements[row][col]
+
         if randomise:
             random.shuffle(candidates)
+
         for num in candidates:
             cell.value = num
             self.updateGrid(row,col,cell.value,True)
+
             if self.solve2(randomise):
                 return True
             else:
@@ -188,7 +191,10 @@ class Grid:
             visual_row = []
             for col in range(self.width):
                 cell = self.elements[row][col]
-                visual_row.append(cell.value)
+                if cell.value == None:
+                    visual_row.append(0)
+                else:
+                    visual_row.append(cell.value)
 
             visual_matrix.append(visual_row.copy())
             visual_row.clear()
@@ -197,18 +203,79 @@ class Grid:
 
     def generatePuzzle(self):
         self.elements[0][0].value = random.randint(1,9)
+        self.updateGrid(0,0,self.elements[0][0].value,True)
         self.solve2(randomise = True)
         return self
 
+    def uniqueSolution(self, limit=2):
+        position, candidates = self.bestCell()
+        row, col = position
+
+        # solution found
+        if row is None and col is None:
+            return 1
+
+        # no solution found
+        if not candidates:
+            return 0
+
+        cell = self.elements[row][col]
+        solutions = 0
+
+        for num in candidates:
+            cell.value = num
+            self.updateGrid(row,col,cell.value,True)
+
+            solutions += self.uniqueSolution(limit)
+
+            self.updateGrid(row,col,cell.value,False)
+            cell.value = None
+
+            if solutions >= limit:
+                return limit
+
+        return solutions
+
+
     def difficultySetting(self,difficulty):
+
+        cells_to_visit = [(row,col) for row in range(9) for col in range(9)]
+        random.shuffle(cells_to_visit)
+
+        plus_or_minus = [-4, -3, -2, -1, 0, 1, 2, 3, 4]
+
+        if difficulty == 'easy':
+            removing_number = 44
+
+        elif difficulty == 'medium':
+            removing_number = 50
+
+        elif difficulty == 'hard':
+            removing_number = 56
+
+        removing_number += random.choice(plus_or_minus)
+
+        self.generatePuzzle()
+
+        for current_row, current_col in cells_to_visit[:removing_number]:
+
+            current_val = self.elements[current_row][current_col].value 
+
+            self.elements[current_row][current_col].value = None
+            self.updateGrid(current_row, current_col, current_val, False)
+
+            if self.uniqueSolution() != 1:
+                self.elements[current_row][current_col].value = current_val
+                self.updateGrid(current_row, current_col, current_val, True)
+
+        return self
+        
         # randomise a cell and make it None
         # solve the puzzle with backtracking 
         # if it has 1 solutionn keep the newly acquired None cell
         # if it has >1 sols, restore the number and try a diff cell
         # continue until a certain (randomised) threshold of cells have
         # been removed
-        pass
-
         
         
     
