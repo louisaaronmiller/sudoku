@@ -1,3 +1,5 @@
+import random
+
 class Cell:
     def __init__(self,row,col,value):
         self.col = col
@@ -159,7 +161,7 @@ class Grid:
 
         return False
     
-    def solve2(self):
+    def solve2(self,randomise = False):
         position, candidates = self.bestCell()
         row,col = position
         
@@ -167,11 +169,12 @@ class Grid:
             return True
         
         cell = self.elements[row][col]
-
+        if randomise:
+            random.shuffle(candidates)
         for num in candidates:
             cell.value = num
             self.updateGrid(row,col,cell.value,True)
-            if self.solve2():
+            if self.solve2(randomise):
                 return True
             else:
                 self.updateGrid(row,col,cell.value,False)
@@ -191,6 +194,23 @@ class Grid:
             visual_row.clear()
 
         return visual_matrix
+
+    def generatePuzzle(self):
+        self.elements[0][0].value = random.randint(1,9)
+        self.solve2(randomise = True)
+        return self
+
+    def difficultySetting(self,difficulty):
+        # randomise a cell and make it None
+        # solve the puzzle with backtracking 
+        # if it has 1 solutionn keep the newly acquired None cell
+        # if it has >1 sols, restore the number and try a diff cell
+        # continue until a certain (randomised) threshold of cells have
+        # been removed
+        pass
+
+        
+        
     
 
 def matrix2grid(matrix):
@@ -205,7 +225,5 @@ def matrix2grid(matrix):
     return new_matrix
 
 
-def generatePuzzle(difficulty):
-
-    if difficulty == "Easy":
-        pass
+    
+    
