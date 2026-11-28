@@ -29,7 +29,27 @@
 
         <div class = "numpad">
 
-            
+            <div class = "np-modes">
+
+                <div class = "np-normal-mode">Normal</div>
+                <div class = "np-pencil-mode">Pencil</div>
+                <div class="np-spacer"></div>
+                <div class = "np-undo-button">Undo</div>
+                
+            </div>
+
+            <div class = "np-numbers">
+
+                {% for i in range(9) %}
+
+                    <div class = "np-number-item">{{ i + 1 }}</div>
+
+                {% endfor %}
+
+                <div class = "np-x-button">X</div>
+
+            </div>
+
 
         </div>
 

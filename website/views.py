@@ -19,3 +19,8 @@ def sudokupage(difficulty):
 def solverpage():
 
     return render_template("explain.html")
+
+@views.route('/how-to-play')
+def htppage():
+
+    return render_template("htp.html")

@@ -1,4 +1,5 @@
 const cells = document.querySelectorAll('.grid-item'); // r:nodelist & finds all classes named grid-item
+const nums = document.querySelectorAll('.np-number-item')
 
 const rows = {
     0: [0, 1, 2, 3, 4, 5, 6, 7, 8],
@@ -72,10 +73,18 @@ function HighlightClick(event){
     event.target.style.backgroundColor = "#d79921";
 }
 
+function addNumber(event){
+    const number_clicked = Array.from(nums).indexOf(event.target) + 1;
+    console.log(number_clicked);
+}
 
 
 cells.forEach(cell => {
     cell.addEventListener('click', HighlightClick);
+});
+
+nums.forEach(cell => {
+    cell.addEventListener('click', addNumber);
 });
 
 

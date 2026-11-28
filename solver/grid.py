@@ -203,3 +203,9 @@ def matrix2grid(matrix):
         new_matrix.append(new_row.copy())
         new_row.clear()
     return new_matrix
+
+
+def generatePuzzle(difficulty):
+
+    if difficulty == "Easy":
+        pass
